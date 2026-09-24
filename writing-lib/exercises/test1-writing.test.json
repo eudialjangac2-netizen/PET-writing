@@ -1,0 +1,22 @@
+{
+  "id": "test1-writing",
+  "title": "Writingfullpractice(1)",
+  "level": "PET (B1)",
+  "part1": {
+    "type": "email",
+    "label": "Email",
+    "instructions": "Đọc email của John và các ghi chú. Viết email trả lời khoảng 100 từ, trả lời đầy đủ 4 gợi ý.",
+    "from": "John",
+    "subject": "Paul's birthday",
+    "bodyHtml": "<p>Hi,</p><p>I'm so excited. It's Paul's birthday on Saturday.</p><p>His family and I have talked about having a garden party. What do you think? <span class=\"note-tag\">Great...</span> Hope the weather's good during the weekend! <span class=\"note-tag\">Yes...</span></p><p>I guess we also need to think about food and music. Should we have a barbecue or just some snacks? I'm not sure. <span class=\"note-tag\">Suggest...</span></p><p>Anyway, have you got any ideas for a present? I was thinking you'd know what he'd like. <span class=\"note-tag\">Tell...</span></p><p>Write soon,<br>John</p>"
+  },
+  "part2": {
+    "question2": null,
+    "question3": {
+      "type": "story",
+      "label": "Story",
+      "instructions": "Your English teacher has asked you to write a story. Your story must begin with this sentence:",
+      "openingSentence": "I realised that I did not have enough money to pay the bill."
+    }
+  }
+}
