@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Practice 🐝</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF1E1; --card:#FFFFFF; --honey:#F0B23D; --honey-dark:#C9821D; --honey-pale:#FCE6BC;
+  --amber:#7A4B23; --blush:#F5B8AE; --ink:#4A3420; --ink-soft:#8A6F52; --good:#4F8F5B; --bad:#D96B6B;
+  --shadow: 0 8px 24px rgba(122,75,35,0.12);
+}
+*{box-sizing:border-box;}
+body{margin:0; background: radial-gradient(circle at 6% 10%, var(--honey-pale) 0%, transparent 38%), radial-gradient(circle at 96% 22%, var(--blush) 0%, transparent 32%), var(--cream); font-family:'Quicksand', sans-serif; color:var(--ink); min-height:100vh; position:relative;}
+h1,h2,h3{font-family:'Baloo 2', sans-serif;}
+.hidden{display:none !important;}
+#watermark{position:fixed; inset:0; pointer-events:none; z-index:35; display:flex; flex-wrap:wrap; align-content:flex-start; opacity:0.06; transform:rotate(-22deg) scale(1.3); overflow:hidden;}
+#watermark span{font-family:'Baloo 2'; font-size:0.8rem; white-space:nowrap; padding:26px 34px; color:#000;}
+#fsOverlay{position:fixed; inset:0; z-index:999; background:rgba(74,52,32,0.94); display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;}
+#fsOverlay .box{background:#fff; border-radius:22px; padding:32px 26px; max-width:420px; box-shadow:var(--shadow);}
+.btn{font-family:'Baloo 2'; font-weight:700; font-size:1rem; border:none; border-radius:16px; padding:13px 22px; cursor:pointer;}
+.btn-primary{background:var(--honey-dark); color:#fff; box-shadow:0 6px 0 #93600f;}
+.btn-small{font-size:0.78rem; padding:7px 14px; border-radius:12px; box-shadow:none;}
+#gate{max-width:480px; margin:40px auto; padding:0 18px;}
+#gate .card{background:var(--card); border-radius:26px; padding:30px 28px; box-shadow:var(--shadow); text-align:center; border:2px dashed var(--honey);}
+#gate h1{color:var(--honey-dark); font-size:1.5rem; margin:6px 0 2px;}
+.field{text-align:left; margin-bottom:14px;}
+.field label{display:block; font-weight:700; font-size:0.85rem; color:var(--ink-soft); margin-bottom:5px;}
+.field input{width:100%; padding:12px 14px; border-radius:14px; border:2px solid var(--honey-pale); font-family:'Quicksand'; font-size:1rem; background:#fffdf8; outline:none;}
+.err{color:var(--bad); font-size:0.85rem; font-weight:700; min-height:18px;}
+#teacherBar{position:sticky; top:0; z-index:60; background:var(--amber); color:#fff; display:flex; align-items:center; justify-content:center; gap:10px; padding:10px 14px; font-family:'Baloo 2'; font-weight:700; font-size:0.85rem; flex-wrap:wrap;}
+#teacherBar button{font-family:'Baloo 2'; font-weight:700; font-size:0.8rem; border:none; border-radius:10px; padding:7px 14px; cursor:pointer;}
+#teacherBar .home{background:var(--honey); color:#4A3420;}
+#teacherBar .del{background:var(--bad); color:#fff;}
+#teacherBar .test{background:#B98A3D; color:#fff;}
+#teacherBar .warnbtn{background:#e8b45a; color:#4A3420;}
+#watchBadge{position:fixed; right:16px; top:70px; z-index:45; background:var(--card); border:2px solid var(--honey-pale); border-radius:14px; padding:8px 12px; font-size:0.72rem; color:var(--ink-soft); box-shadow:var(--shadow); text-align:center;}
+#watchBadge b{display:block; color:var(--amber); font-size:0.9rem;}
+#app{max-width:1320px; margin:0 auto; padding:20px 18px 60px;}
+header.app-head{text-align:center; margin-bottom:16px;}
+header.app-head h1{font-size:1.4rem; color:var(--honey-dark); margin-bottom:2px;}
+.mode-flag{display:inline-block; font-size:0.75rem; font-weight:700; padding:3px 12px; border-radius:999px; margin-left:6px;}
+.mode-flag.scaffold{background:var(--honey-pale); color:var(--honey-dark);}
+.mode-flag.test{background:#FBEAEA; color:var(--bad);}
+#timerBadge{position:fixed; left:16px; top:70px; z-index:45; background:var(--card); border:2px solid var(--bad); border-radius:14px; padding:8px 14px; font-family:'Baloo 2'; font-weight:700; color:var(--bad); box-shadow:var(--shadow);}
+
+.split-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start;}
+@media(max-width:900px){.split-grid{grid-template-columns:1fr;}}
+.pane{background:var(--card); border-radius:24px; padding:22px; box-shadow:var(--shadow); border-top:6px solid var(--honey);}
+.scroll-col{max-height:74vh; overflow-y:auto; padding-right:8px;}
+.guarded{-webkit-user-select:text; user-select:text;}
+
+.part-controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:14px; padding-bottom:14px; border-bottom:2px dashed var(--honey-pale);}
+.part-controls select{font-family:'Baloo 2'; font-weight:700; font-size:0.95rem; padding:9px 14px; border-radius:12px; border:2px solid var(--honey); background:#fff; color:var(--ink);}
+.q-choice{display:flex; gap:10px; flex-wrap:wrap;}
+.q-choice label{display:flex; align-items:center; gap:6px; background:#FFF7E9; border:2px solid var(--honey-pale); border-radius:12px; padding:7px 13px; font-size:0.85rem; font-weight:700; cursor:pointer;}
+.q-choice input{margin:0;}
+
+.prompt-box{background:#FFFCF6; border:2px solid var(--honey-pale); border-radius:16px; padding:16px 18px; margin-bottom:16px;}
+.prompt-box h3{margin:0 0 10px; font-size:1rem; color:var(--honey-dark);}
+.email-meta{font-size:0.85rem; color:var(--ink-soft); margin-bottom:4px;}
+.email-body p{margin:0 0 10px; line-height:1.6; font-size:0.94rem;}
+.note-tag{display:inline-block; background:var(--honey-pale); color:var(--honey-dark); font-weight:700; font-size:0.78rem; padding:2px 9px; border-radius:8px; margin-left:4px;}
+.vocab-box{background:#FFF7E9; border:2px dashed var(--honey-dark); border-radius:16px; padding:16px 18px;}
+.vocab-box h3{margin:0 0 10px; font-size:1rem; color:var(--amber);}
+.vocab-box ol{margin:0; padding-left:20px;}
+.vocab-box li{margin-bottom:8px; font-size:0.92rem; line-height:1.45;}
+.vocab-box li b{color:var(--honey-dark);}
+.model-box{background:#F5EEE0; border:2px dashed var(--amber); border-radius:16px; padding:16px 18px; margin-bottom:14px;}
+.model-box h3{margin:0 0 8px; font-size:1rem; color:var(--amber);}
+.notice-box{background:#FFF3E1; border:2px solid #e8b45a; border-radius:14px; padding:12px 16px; margin-bottom:14px; font-size:0.87rem; color:#7a5310; font-weight:600;}
+.checklist{list-style:none; padding:0; margin:0 0 14px;}
+.checklist li{display:flex; gap:9px; align-items:flex-start; margin-bottom:8px; font-size:0.9rem;}
+textarea.writeArea{width:100%; min-height:220px; border-radius:16px; border:2px solid var(--honey-pale); padding:16px; font-family:'Quicksand'; font-size:1rem; line-height:1.6; resize:vertical; outline:none;}
+.wc{display:flex; justify-content:space-between; font-size:0.82rem; color:var(--ink-soft); margin-top:6px;}
+.result-msg{margin-top:14px; padding:12px 16px; border-radius:14px; font-weight:700; font-size:0.9rem; display:none;}
+.result-msg.show{display:block;}
+.result-msg.ok{background:#E9F7EC; color:#2f6b3a;}
+.result-msg.warn{background:#FFF3E1; color:#9a6a1c; border:2px dashed #e8b45a;}
+.report-box{margin-top:14px; background:#F1F8F2; border:2px dashed var(--good); border-radius:16px; padding:14px 16px; font-size:0.85rem;}
+.report-box table{width:100%; border-collapse:collapse; margin-top:8px;}
+.report-box td{padding:4px 6px; vertical-align:top; font-size:0.82rem;}
+.report-box td:first-child{font-weight:700; color:var(--honey-dark); width:150px;}
+</style>
+</head>
+<body>
+
+<div id="watermark"></div>
+<div id="fsOverlay" class="hidden"><div class="box"><h2>🐝 Bạn đã thoát toàn màn hình</h2><p>Vui lòng quay lại chế độ toàn màn hình để tiếp tục làm bài.</p><button class="btn btn-primary" id="reenterFsBtn">🔒 Quay lại toàn màn hình</button></div></div>
+
+<div id="teacherBar" class="hidden">
+  <span>🐝 Chế độ Giáo viên</span>
+  <button class="home" id="homeBtn">🏠 Về màn hình chính</button>
+  <button class="del" id="delAllBtn">🗑️ Xoá kết quả</button>
+  <button class="test" id="autoFillBtn">🧪 Test luồng nộp bài</button>
+  <button class="warnbtn" id="dupTestBtn">⚠️ Test cảnh báo trùng lặp</button>
+  <button class="test" id="sendTestBtn">📤 Test gửi Google Sheet</button>
+</div>
+<div id="watchBadge" class="hidden"><b id="tabSwitchNum">0</b>lần rời khỏi bài</div>
+<div id="timerBadge" class="hidden">⏱️ <span id="timerNum">45:00</span></div>
+
+<div id="gate">
+  <div class="card">
+    <h1>🐝 <span id="gateTitle">Writing Practice</span></h1>
+    <p id="gateModeLabel" style="color:var(--ink-soft); font-size:0.9rem;"></p>
+    <div class="field"><label>Họ và tên</label><input id="nameInput" type="text" placeholder="Nhập tên của bạn..."></div>
+    <div class="field"><label>Mã bài học</label><input id="codeInput" type="text" placeholder="Nhập mã bài học..."></div>
+    <div class="err" id="gateErr"></div>
+    <button class="btn btn-primary" id="enterBtn" style="width:100%;">Vào bài học 🐝</button>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+  <header class="app-head">
+    <h1 id="appTitle">🐝 Writing Practice</h1>
+    <div id="greetLine" style="color:var(--ink-soft); font-size:0.9rem;"></div>
+  </header>
+
+  <div class="split-grid">
+    <div class="pane">
+      <div class="scroll-col guarded" id="promptPane"></div>
+    </div>
+    <div class="pane">
+      <div class="scroll-col" id="writePane"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ URL PARAMS & CONFIG ============ */
+const params = new URLSearchParams(location.search);
+const EX_ID = params.get('id') || 'test1-writing';
+const MODE = (params.get('mode') === 'test') ? 'test' : 'scaffold';
+const SCAFFOLD = MODE === 'scaffold';
+
+const VALID_STUDENT_CODE = "72PETRB";
+const TEACHER_NAME_KEY = "GVPET72";
+const TEACHER_CODE_KEY = "72GRADEBPET";
+const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwriNrQ7B7sLQqb5pOIGkFk8mOsrOmS1aAvZJ4m6jS3VWreAtcG_x2d6ToSnOF8mdmfrg/exec";
+const SIMILARITY_THRESHOLD = 0.6;
+const MIN_WORDS = 90;
+const TEST_DURATION_SEC = 45 * 60;
+
+let EX = null;
+let teacherMode = false;
+let studentName = "";
+let sessionStart = null;
+let tabSwitchCount = 0;
+let lastLeaveTime = 0;
+let currentPart = "part1";
+let currentQ2 = null; // "question2" or "question3" when part2 selected
+let timerInterval = null;
+let timerRemaining = TEST_DURATION_SEC;
+let timerLocked = false;
+
+/* ============ LOAD EXERCISE JSON ============ */
+async function loadExercise(){
+  const file = 'exercises/' + EX_ID + (MODE === 'test' ? '.test.json' : '.json');
+  const res = await fetch(file);
+  EX = await res.json();
+  document.getElementById('gateTitle').textContent = EX.title || 'Writing Practice';
+  document.getElementById('gateModeLabel').textContent = SCAFFOLD ? '🧠 Chế độ Luyện tập (có bài mẫu & gợi ý)' : '⏱️ Chế độ Thi thử (không bài mẫu, giới hạn 45 phút)';
+  document.getElementById('appTitle').innerHTML = '🐝 ' + (EX.title || 'Writing Practice') + ' <span class="mode-flag ' + MODE + '">' + (SCAFFOLD ? 'Luyện tập' : 'Thi thử') + '</span>';
+  currentQ2 = EX.part2.question2 ? 'question2' : 'question3';
+}
+loadExercise();
+
+/* ============ WATERMARK / ANTI-CHEAT ============ */
+function buildWatermark(){
+  const wm = document.getElementById('watermark'); wm.innerHTML = "";
+  const label = (studentName || "Writing") + " • " + new Date().toLocaleDateString('vi-VN');
+  for(let i=0;i<40;i++){ const s=document.createElement('span'); s.textContent=label; wm.appendChild(s); }
+}
+function updateWatchBadge(){ document.getElementById('tabSwitchNum').textContent = tabSwitchCount; }
+function registerLeave(){
+  const now = Date.now();
+  if(now - lastLeaveTime > 800){ tabSwitchCount++; lastLeaveTime = now; updateWatchBadge(); }
+}
+document.addEventListener('visibilitychange', () => { if(document.hidden && sessionStart) registerLeave(); });
+function requestFS(){ const el=document.documentElement; const p=el.requestFullscreen?el.requestFullscreen():(el.webkitRequestFullscreen?el.webkitRequestFullscreen():null); if(p&&p.catch)p.catch(()=>{}); }
+document.getElementById('reenterFsBtn').addEventListener('click', requestFS);
+function fsActive(){ return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+document.addEventListener('fullscreenchange', onFsChange);
+document.addEventListener('webkitfullscreenchange', onFsChange);
+function onFsChange(){
+  if(!sessionStart || teacherMode) return;
+  if(!fsActive()){ registerLeave(); document.getElementById('fsOverlay').classList.remove('hidden'); }
+  else { document.getElementById('fsOverlay').classList.add('hidden'); }
+}
+document.addEventListener('copy', (e) => {
+  const sel = window.getSelection();
+  const node = sel && sel.anchorNode ? (sel.anchorNode.nodeType===1?sel.anchorNode:sel.anchorNode.parentElement) : null;
+  if(node && node.closest && node.closest('.guarded')) e.preventDefault();
+});
+document.addEventListener('contextmenu', (e) => { if(e.target.closest && e.target.closest('.guarded')) e.preventDefault(); });
+
+/* ============ TIMER (test mode only) ============ */
+function startTimer(){
+  if(SCAFFOLD || teacherMode) return;
+  document.getElementById('timerBadge').classList.remove('hidden');
+  timerInterval = setInterval(() => {
+    timerRemaining--;
+    const m = Math.floor(timerRemaining/60), s = timerRemaining%60;
+    document.getElementById('timerNum').textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    if(timerRemaining <= 0){
+      clearInterval(timerInterval);
+      timerLocked = true;
+      const ta = document.getElementById('writeArea');
+      if(ta) ta.disabled = true;
+      autoSubmitOnTimeout();
+    }
+  }, 1000);
+}
+function autoSubmitOnTimeout(){
+  const msg = document.getElementById('resultMsg');
+  if(msg){ msg.className = 'result-msg show warn'; msg.textContent = "⏱️ Đã hết giờ làm bài (45 phút). Bài viết đã được khoá và tự động nộp."; }
+  submitCurrent(true);
+}
+
+/* ============ GATE ============ */
+document.getElementById('enterBtn').addEventListener('click', () => {
+  const name = document.getElementById('nameInput').value.trim();
+  const code = document.getElementById('codeInput').value.trim();
+  const err = document.getElementById('gateErr');
+  if(!name){ err.textContent = "Vui lòng nhập tên."; return; }
+  if(!code){ err.textContent = "Vui lòng nhập mã bài học."; return; }
+  if(name.toUpperCase() === TEACHER_NAME_KEY && code.toUpperCase() === TEACHER_CODE_KEY){
+    err.textContent = ""; teacherMode = true; studentName = "Giáo viên"; startApp(); return;
+  }
+  if(code.toUpperCase() === VALID_STUDENT_CODE){
+    err.textContent = ""; teacherMode = false; studentName = name; startApp(); return;
+  }
+  err.textContent = "Tên hoặc mã bài học không đúng.";
+});
+
+function startApp(){
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  document.getElementById('greetLine').textContent = teacherMode ? "Đang xem trước bài học 🐝" : "Chào " + studentName + "! 🐝";
+  document.getElementById('teacherBar').classList.toggle('hidden', !teacherMode);
+  document.getElementById('watchBadge').classList.remove('hidden');
+  sessionStart = new Date();
+  tabSwitchCount = 0;
+  updateWatchBadge();
+  buildWatermark();
+  renderPart();
+  if(!teacherMode){ requestFS(); startTimer(); }
+  window.scrollTo(0,0);
+}
+
+document.getElementById('homeBtn').addEventListener('click', () => { location.href = location.pathname + location.search; });
+document.getElementById('delAllBtn').addEventListener('click', () => { tabSwitchCount = 0; updateWatchBadge(); renderPart(); });
+
+/* ============ RENDER: PART / QUESTION CONTROLS + PROMPT + WRITE AREA ============ */
+function renderPart(){
+  const promptPane = document.getElementById('promptPane');
+  const writePane = document.getElementById('writePane');
+
+  let controlsHtml = `<div class="part-controls">
+    <select id="partSelect">
+      <option value="part1">Part 1 — ${EX.part1.label}</option>
+      <option value="part2">Part 2 — Chọn 1 trong 2 đề</option>
+    </select>`;
+  if(currentPart === 'part2'){
+    const opts = [];
+    if(EX.part2.question2) opts.push({key:'question2', label:'Question 2 (' + EX.part2.question2.label + ')'});
+    if(EX.part2.question3) opts.push({key:'question3', label:'Question 3 (' + EX.part2.question3.label + ')'});
+    if(opts.length > 1){
+      controlsHtml += `<div class="q-choice">` + opts.map(o => `<label><input type="radio" name="qchoice" value="${o.key}" ${currentQ2===o.key?'checked':''}> ${o.label}</label>`).join('') + `</div>`;
+    }
+  }
+  controlsHtml += `</div>`;
+  document.getElementById('partSelect') && null;
+
+  const task = currentPart === 'part1' ? EX.part1 : EX.part2[currentQ2];
+
+  // ---- Prompt pane (left) ----
+  let promptHtml = `<h3 style="color:var(--honey-dark);">📋 ${EX.title}</h3>`;
+  if(currentPart === 'part1'){
+    promptHtml += renderTaskPrompt(EX.part1);
+  } else {
+    if(EX.part2.question2) promptHtml += `<div style="margin-bottom:18px;"><span class="mode-flag scaffold">Question 2</span>${renderTaskPrompt(EX.part2.question2)}</div>`;
+    if(EX.part2.question3) promptHtml += `<div><span class="mode-flag scaffold">Question 3</span>${renderTaskPrompt(EX.part2.question3)}</div>`;
+  }
+  if(SCAFFOLD) promptHtml += `<div class="vocab-box"><h3>🍯 Từ vựng &amp; cấu trúc gợi ý</h3><ol>` + task.vocab.map(v => `<li><b>${v.p}</b><br><span style="color:var(--ink-soft); font-size:0.85rem;">${v.d}</span></li>`).join('') + `</ol></div>`;
+  promptPane.innerHTML = promptHtml;
+
+  // ---- Write pane (right) ----
+  let writeHtml = controlsHtml;
+  if(SCAFFOLD){
+    writeHtml += `<div class="model-box guarded"><h3>📖 Bài mẫu tham khảo</h3><p style="white-space:pre-line; font-size:0.92rem; line-height:1.6;">${task.model}</p></div>
+      <div class="notice-box">⚠️ Bạn có thể đọc bài mẫu để tham khảo, nhưng <u>không được chép giống hoàn toàn</u>. Nếu bài trùng trên ${Math.round(SIMILARITY_THRESHOLD*100)}%, bạn sẽ phải chỉnh sửa lại trước khi nộp.</div>`;
+  }
+  writeHtml += renderChecklist(task.type);
+  writeHtml += `<textarea class="writeArea" id="writeArea" placeholder="..."></textarea>
+    <div class="wc"><span>Số từ: <span id="wcNum">0</span></span><span>Tối thiểu ${MIN_WORDS} từ để nộp bài</span></div>
+    <button class="btn btn-primary" id="submitBtn" style="margin-top:12px;">Nộp bài 🎉</button>
+    <div class="result-msg ok" id="resultMsg"></div>
+    <div class="report-box hidden" id="reportBox"></div>`;
+  writePane.innerHTML = writeHtml;
+
+  document.getElementById('partSelect').value = currentPart;
+  document.getElementById('partSelect').addEventListener('change', (e) => { currentPart = e.target.value; renderPart(); });
+  document.querySelectorAll('input[name="qchoice"]').forEach(r => r.addEventListener('change', (e) => { currentQ2 = e.target.value; renderPart(); }));
+
+  const ta = document.getElementById('writeArea');
+  ta.addEventListener('input', () => { document.getElementById('wcNum').textContent = wordCount(ta.value); });
+  ta.addEventListener('paste', (e) => e.preventDefault());
+  document.getElementById('submitBtn').addEventListener('click', () => submitCurrent(false));
+}
+
+function renderTaskPrompt(task){
+  if(task.type === 'email'){
+    return `<div class="prompt-box"><p style="font-size:0.9rem;">${task.instructions}</p>
+      <div class="email-meta"><b>From:</b> ${task.from}</div>
+      <div class="email-meta"><b>Subject:</b> ${task.subject}</div>
+      <div class="email-body" style="margin-top:10px;">${task.bodyHtml}</div></div>`;
+  }
+  if(task.type === 'story'){
+    return `<div class="prompt-box"><p style="font-size:0.9rem;">${task.instructions}</p>
+      <p style="font-weight:700; font-style:italic; margin:10px 0;">"${task.openingSentence}"</p>
+      <p style="font-size:0.9rem;">Write your <b>story</b> in about <b>100 words</b>.</p></div>`;
+  }
+  if(task.type === 'article'){
+    return `<div class="prompt-box"><p style="font-size:0.9rem;">${task.instructions || ''}</p>
+      <p style="margin:10px 0;">${task.topic || ''}</p></div>`;
+  }
+  return `<div class="prompt-box">${task.instructions || ''}</div>`;
+}
+function renderChecklist(type){
+  if(type === 'email') return `<ul class="checklist">
+    <li><input type="checkbox"> Trả lời đủ 4 gợi ý</li>
+    <li><input type="checkbox"> Văn phong thân mật, phù hợp viết cho bạn</li>
+    <li><input type="checkbox"> Có lời chào mở đầu và kết thư</li>
+    <li><input type="checkbox"> Độ dài khoảng 100 từ</li></ul>`;
+  if(type === 'story') return `<ul class="checklist">
+    <li><input type="checkbox"> Bắt đầu đúng bằng câu đề cho</li>
+    <li><input type="checkbox"> Bài viết có 3 đoạn: mở – thân – kết</li>
+    <li><input type="checkbox"> Sử dụng đúng thì quá khứ</li>
+    <li><input type="checkbox"> Kể chuyện đúng ngôi thứ nhất (I)</li></ul>`;
+  return `<ul class="checklist">
+    <li><input type="checkbox"> Đủ ý theo yêu cầu đề bài</li>
+    <li><input type="checkbox"> Văn phong phù hợp thể loại</li>
+    <li><input type="checkbox"> Bố cục rõ ràng, có đoạn</li>
+    <li><input type="checkbox"> Độ dài khoảng 100 từ</li></ul>`;
+}
+
+/* ============ SIMILARITY / WORD COUNT ============ */
+function normalizeWords(t){ return t.toLowerCase().replace(/[.,!?;:"'“”]/g,'').split(/\s+/).filter(Boolean); }
+function shingles(w,n){ const s=new Set(); for(let i=0;i<=w.length-n;i++) s.add(w.slice(i,i+n).join(' ')); return s; }
+function similarityScore(a,b){
+  const wa=normalizeWords(a), wb=normalizeWords(b);
+  if(wa.length<5||wb.length<5) return 0;
+  const sa=shingles(wa,5), sb=shingles(wb,5);
+  if(sa.size===0||sb.size===0) return 0;
+  let overlap=0; sa.forEach(g=>{if(sb.has(g))overlap++;});
+  const union=new Set([...sa,...sb]).size;
+  return union===0?0:overlap/union;
+}
+function wordCount(t){ return t.trim().length ? t.trim().split(/\s+/).length : 0; }
+
+/* ============ SUBMIT ============ */
+function submitCurrent(isTimeout){
+  const ta = document.getElementById('writeArea');
+  const msg = document.getElementById('resultMsg');
+  const text = ta.value.trim();
+  const wc = wordCount(text);
+  const task = currentPart === 'part1' ? EX.part1 : EX.part2[currentQ2];
+  const sheetType = task.type === 'email' ? 'Email' : (task.type === 'story' ? 'Story' : 'Article');
+
+  if(!isTimeout && wc < MIN_WORDS){
+    msg.className = 'result-msg show warn';
+    msg.textContent = "❌ Bài viết cần tối thiểu " + MIN_WORDS + " từ để nộp bài. Hiện tại bạn mới viết " + wc + " từ.";
+    return;
+  }
+  if(SCAFFOLD && task.model){
+    const sim = similarityScore(text, task.model);
+    if(sim > SIMILARITY_THRESHOLD){
+      msg.className = 'result-msg show warn';
+      msg.textContent = "⚠️ Bài viết " + (teacherMode?"(test) ":"") + "giống " + Math.round(sim*100) + "% so với bài mẫu. " + (teacherMode ? "(Đang hoạt động đúng.)" : "Hãy chỉnh sửa lại bằng lời văn của riêng bạn.");
+      return;
+    }
+  }
+
+  msg.className = 'result-msg show ok';
+  msg.textContent = isTimeout ? msg.textContent : "🎉 Cảm ơn bạn đã hoàn thành bài! Hãy đọc lại theo checklist trước khi nộp cho giáo viên.";
+
+  const endTime = new Date();
+  const report = {
+    studentName: studentName,
+    examName: EX.title + " - " + (currentPart==='part1' ? 'Part 1 (Email)' : 'Part 2 (' + (currentQ2==='question2'?'Question 2: Article':'Question 3: Story') + ')'),
+    sheetType: sheetType,
+    mode: SCAFFOLD ? 'Practice' : 'Mock Test',
+    startTime: sessionStart ? sessionStart.toLocaleString('vi-VN') : "",
+    endTime: endTime.toLocaleString('vi-VN'),
+    correctCount: "-",
+    wrongDetails: "-",
+    tabSwitchCount: tabSwitchCount,
+    storyContent: text
+  };
+  showReportPreview(report);
+  sendReportToSheet(report);
+}
+
+function showReportPreview(r){
+  const box = document.getElementById('reportBox');
+  box.classList.remove('hidden');
+  box.innerHTML = `<b>📋 Kết quả sẽ được gửi:</b><table>
+    <tr><td>Học sinh</td><td>${r.studentName}</td></tr>
+    <tr><td>Bài</td><td>${r.examName}</td></tr>
+    <tr><td>Chế độ</td><td>${r.mode}</td></tr>
+    <tr><td>Bắt đầu</td><td>${r.startTime}</td></tr>
+    <tr><td>Kết thúc</td><td>${r.endTime}</td></tr>
+    <tr><td>Số lần rời khỏi bài</td><td>${r.tabSwitchCount}</td></tr></table>`;
+}
+function sendReportToSheet(report){
+  if(!SHEET_WEBHOOK_URL) return;
+  fetch(SHEET_WEBHOOK_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(report) }).catch(()=>{});
+}
+
+/* ============ TEACHER TEST TOOLS ============ */
+document.getElementById('autoFillBtn').addEventListener('click', () => {
+  const ta = document.getElementById('writeArea');
+  const task = currentPart === 'part1' ? EX.part1 : EX.part2[currentQ2];
+  ta.value = (task.model || "This is a distinct test answer with different wording, written to check the full submission flow works end to end without triggering the similarity warning, covering roughly one hundred words of placeholder content for testing purposes only, since teacher mode is used purely to verify that everything on this page behaves as expected before real students begin.").split(' ').slice(0, 200).join(' ');
+  ta.dispatchEvent(new Event('input'));
+  submitCurrent(false);
+});
+document.getElementById('dupTestBtn').addEventListener('click', () => {
+  const ta = document.getElementById('writeArea');
+  const task = currentPart === 'part1' ? EX.part1 : EX.part2[currentQ2];
+  if(!task.model){ alert('Không có bài mẫu ở chế độ test này (đúng như thiết kế — chế độ Mock Test không tải bài mẫu).'); return; }
+  ta.value = task.model;
+  ta.dispatchEvent(new Event('input'));
+  submitCurrent(false);
+});
+document.getElementById('sendTestBtn').addEventListener('click', () => {
+  const fake = { studentName:"TEST (giáo viên)", examName: (EX?EX.title:'Writing') + " - TEST", sheetType:"Email", mode: SCAFFOLD?'Practice':'Mock Test', startTime:new Date().toLocaleString('vi-VN'), endTime:new Date().toLocaleString('vi-VN'), correctCount:"-", wrongDetails:"-", tabSwitchCount:0, storyContent:"(nội dung test)" };
+  sendReportToSheet(fake);
+  const box = document.getElementById('reportBox');
+  box.classList.remove('hidden');
+  box.innerHTML = "<b>📤 Đã gửi gói dữ liệu test tới Google Sheet.</b>";
+});
+</script>
+</body>
+</html>
