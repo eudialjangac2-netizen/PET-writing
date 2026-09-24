@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kho bài tập Writing 🐝</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF1E1; --card:#FFFFFF; --honey:#F0B23D; --honey-dark:#C9821D; --honey-pale:#FCE6BC; --amber:#7A4B23; --ink:#4A3420; --ink-soft:#8A6F52; --shadow:0 8px 24px rgba(122,75,35,0.12);}
+*{box-sizing:border-box;}
+body{margin:0; background: radial-gradient(circle at 6% 10%, var(--honey-pale) 0%, transparent 38%), var(--cream); font-family:'Quicksand', sans-serif; color:var(--ink);}
+h1,h2{font-family:'Baloo 2', sans-serif;}
+.wrap{max-width:820px; margin:0 auto; padding:36px 18px 60px;}
+h1{text-align:center; color:var(--honey-dark); font-size:1.7rem;}
+p.sub{text-align:center; color:var(--ink-soft); margin-top:0;}
+.card{background:var(--card); border-radius:22px; padding:22px 24px; margin-bottom:18px; box-shadow:var(--shadow); border-top:6px solid var(--honey);}
+.card h2{margin:0 0 4px; font-size:1.15rem;}
+.card .lvl{display:inline-block; font-size:0.78rem; font-weight:700; color:var(--honey-dark); background:var(--honey-pale); padding:3px 12px; border-radius:999px; margin-bottom:10px;}
+.links{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+.links a{font-family:'Baloo 2'; font-weight:700; font-size:0.9rem; text-decoration:none; padding:10px 18px; border-radius:14px; display:inline-block;}
+.links a.scaffold{background:var(--honey-dark); color:#fff;}
+.links a.test{background:#fff; color:var(--ink); border:2px solid var(--honey-dark);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🐝 Kho bài tập Writing</h1>
+  <p class="sub">Cambridge B1 Preliminary for Schools</p>
+  <div id="list"></div>
+</div>
+<script>
+fetch('exercises-manifest-viet.json')
+  .then(r => r.json())
+  .then(data => {
+    const list = document.getElementById('list');
+    list.innerHTML = data.exercises.map(ex => `
+      <div class="card">
+        <span class="lvl">${ex.level}</span>
+        <h2>${ex.title}</h2>
+        <div class="links">
+          <a class="scaffold" href="bai-tap-viet.html?id=${ex.id}&mode=scaffold">🧠 Luyện tập (có bài mẫu &amp; gợi ý)</a>
+          <a class="test" href="bai-tap-viet.html?id=${ex.id}&mode=test">⏱️ Thi thử (không bài mẫu, 45 phút)</a>
+        </div>
+      </div>`).join('');
+  });
+</script>
+</body>
+</html>
