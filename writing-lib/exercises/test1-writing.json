@@ -1,0 +1,42 @@
+{
+  "id": "test1-writing",
+  "title": "Writingfullpractice(1)",
+  "level": "PET (B1)",
+  "part1": {
+    "type": "email",
+    "label": "Email",
+    "instructions": "Đọc email của John và các ghi chú. Viết email trả lời khoảng 100 từ, trả lời đầy đủ 4 gợi ý.",
+    "from": "John",
+    "subject": "Paul's birthday",
+    "bodyHtml": "<p>Hi,</p><p>I'm so excited. It's Paul's birthday on Saturday.</p><p>His family and I have talked about having a garden party. What do you think? <span class=\"note-tag\">Great...</span> Hope the weather's good during the weekend! <span class=\"note-tag\">Yes...</span></p><p>I guess we also need to think about food and music. Should we have a barbecue or just some snacks? I'm not sure. <span class=\"note-tag\">Suggest...</span></p><p>Anyway, have you got any ideas for a present? I was thinking you'd know what he'd like. <span class=\"note-tag\">Tell...</span></p><p>Write soon,<br>John</p>",
+    "vocab": [
+      {"p": "I think ... is a great idea because...", "d": "Trả lời ý \u201cGreat...\u201d (đồng ý về garden party)"},
+      {"p": "I hope the weather will be fine/sunny.", "d": "Trả lời ý \u201cYes...\u201d (nói về thời tiết)"},
+      {"p": "Why don't we have a barbecue?", "d": "Trả lời ý \u201cSuggest...\u201d (đề xuất đồ ăn)"},
+      {"p": "How about + V-ing...?", "d": "Cách gợi ý khác cho ý \u201cSuggest...\u201d"},
+      {"p": "I'm sure he'd love...", "d": "Trả lời ý \u201cTell...\u201d (gợi ý quà)"},
+      {"p": "Let me know what you think.", "d": "Câu kết thân thiện"},
+      {"p": "Speak soon, / See you soon,", "d": "Lời chào cuối thư (informal)"}
+    ],
+    "model": "Hi John, Thanks for your email! I think a garden party is a great idea because Paul loves being outdoors, and it will be more fun than a normal party indoors. I really hope the weather will be sunny for the whole weekend, but maybe we should have a backup plan just in case it rains. About the food, why don't we have a barbecue instead of just snacks? It feels more exciting for a birthday, and everyone can help cook together. As for a present, I'm sure he'd love a new pair of headphones, since his old ones broke last month. Let me know what you think! Speak soon, Anna"
+  },
+  "part2": {
+    "question2": null,
+    "question3": {
+      "type": "story",
+      "label": "Story",
+      "instructions": "Your English teacher has asked you to write a story. Your story must begin with this sentence:",
+      "openingSentence": "I realised that I did not have enough money to pay the bill.",
+      "vocab": [
+        {"p": "To my horror,", "d": "Diễn tả cảm giác hoảng sợ/kinh hãi (Surprise)"},
+        {"p": "I felt so embarrassed/anxious.", "d": "Mô tả cảm xúc lúc đó"},
+        {"p": "I searched through my pockets/bag.", "d": "Hành động kiểm tra tiền (Solve)"},
+        {"p": "Luckily, ... offered to help.", "d": "Có người giúp đỡ bất ngờ"},
+        {"p": "Without thinking twice, I...", "d": "Hành động quyết đoán để giải quyết"},
+        {"p": "In the end, I managed to...", "d": "Mở đầu đoạn kết"},
+        {"p": "From then on, I always...", "d": "Bài học rút ra cuối truyện"}
+      ],
+      "model": "I realised that I did not have enough money to pay the bill. I was having dinner at a small restaurant with my classmates, and when the waiter brought the bill, my heart sank because my wallet was almost empty. To my horror, everyone was waiting for me to pay my share. I searched through my bag desperately, hoping to find some spare coins, but there was nothing there. I felt so embarrassed that I didn't know what to say. Just then, my best friend noticed my panic and quietly offered to lend me the money. Without thinking twice, I accepted gratefully and thanked her again and again. From then on, I always make sure to carry enough cash whenever I go out with friends."
+    }
+  }
+}
