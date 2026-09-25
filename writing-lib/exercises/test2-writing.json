@@ -18,7 +18,7 @@
       {"p": "How much/many...do you think...?", "d": "Cách đặt câu hỏi khác"},
       {"p": "Email me again soon. / Write back soon.", "d": "Lời chào cuối thư"}
     ],
-    "model": "Hi Ben, Thank you for the invitation to go on holiday with you and your uncle and aunt. I would love to go with you. However, I can't go skiing because I have hurt my leg playing football. But it will still be fun watching you. I like lots of different kinds of food but I am a vegetarian. I don't think that will be a problem though. Actually I do eat fish and seafood. What do I need to take with me? I guess I need lots of warm clothes. I'll bring my new gloves and hat. How much money do you think I will need? Email me again soon please. Andrew"
+    "model": "Hi Ben,\n\nThank you for the invitation to go on holiday with you and your uncle and aunt. I would love to go with you.\n\nHowever, I can't go skiing because I have hurt my leg playing football. But it will still be fun watching you. I like lots of different kinds of food but I am a vegetarian. I don't think that will be a problem though. Actually I do eat fish and seafood.\n\nWhat do I need to take with me? I guess I need lots of warm clothes. I'll bring my new gloves and hat. How much money do you think I will need?\n\nEmail me again soon please.\nAndrew"
   },
   "part2": {
     "question2": {
@@ -35,7 +35,7 @@
         {"p": "Also, you can...", "d": "Bổ sung ý"},
         {"p": "For all these reasons, ... is the best way to...", "d": "Kết luận bài viết"}
       ],
-      "model": "My favourite way to travel is by car because you can go wherever you want. You can also stop for a break when you need to. However, it is not such a good idea to use a car in a city. Many people in the city use the train instead of driving. There are many reasons for this. First of all, it is very difficult to find a place to park your car. Secondly, there is too much traffic in the city so your journey will take a long time. Also you can relax on a train. You can read or talk to other passengers. For all these reasons trains are the best way to travel in a city even if I like the car more."
+      "model": "My favourite way to travel is by car because you can go wherever you want. You can also stop for a break when you need to.\n\nHowever, it is not such a good idea to use a car in a city. Many people in the city use the train instead of driving. There are many reasons for this. First of all, it is very difficult to find a place to park your car. Secondly, there is too much traffic in the city so your journey will take a long time.\n\nAlso you can relax on a train. You can read or talk to other passengers.\n\nFor all these reasons trains are the best way to travel in a city even if I like the car more."
     },
     "question3": {
       "type": "story",
@@ -51,7 +51,7 @@
         {"p": "Nobody was hurt.", "d": "Kết quả an toàn"},
         {"p": "It was just like being in a film, but much more...", "d": "Câu kết ấn tượng"}
       ],
-      "model": "You will never believe what happened today. I was shopping in town with my mum. I needed some new clothes for school. We were having a nice morning and we decided to go for a coffee and a piece of cake in our favourite cafe. Suddenly a man ran past us. He had a scarf over his face and a gun in his hand. Then, a police car arrived and followed the man. People were shouting and we were very frightened. Luckily the police caught the man and nobody was hurt. It was just like being in a film on TV but much more frightening."
+      "model": "You will never believe what happened today.\n\nI was shopping in town with my mum. I needed some new clothes for school.\n\nWe were having a nice morning and we decided to go for a coffee and a piece of cake in our favourite cafe.\n\nSuddenly a man ran past us. He had a scarf over his face and a gun in his hand. Then, a police car arrived and followed the man. People were shouting and we were very frightened.\n\nLuckily the police caught the man and nobody was hurt. It was just like being in a film on TV but much more frightening."
     }
   }
 }
