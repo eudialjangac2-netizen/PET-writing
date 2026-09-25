@@ -1,0 +1,27 @@
+{
+  "id": "test2-writing",
+  "title": "Writingfullpractice(2)",
+  "level": "PET (B1)",
+  "part1": {
+    "type": "email",
+    "label": "Email",
+    "instructions": "Đọc email của Ben và các ghi chú. Viết email trả lời khoảng 100 từ, trả lời đầy đủ các gợi ý.",
+    "from": "Ben",
+    "subject": "Winter Holidays",
+    "bodyHtml": "<p>Hi Andrew,</p><p>My uncle and aunt are taking me to the mountains for a week. They said that I could bring a friend with me. Would you like to come with me? <span class=\"note-tag\">Thanks, yes...</span></p><p>My uncle and aunt are really fun to be with. We will go skiing twice while we are there. I hope you'll join us. <span class=\"note-tag\">No, because...</span></p><p>My uncle said that we will eat at a different restaurant every night. What food do you like? <span class=\"note-tag\">Tell Ben...</span></p><p>Is there anything else you'd like to know? We will leave on the 15th December. <span class=\"note-tag\">Ask Ben...</span></p><p>Best wishes,<br>Ben</p>"
+  },
+  "part2": {
+    "question2": {
+      "type": "article",
+      "label": "Article",
+      "instructions": "You see this notice in your school English-language magazine:",
+      "topic": "<div style=\"background:var(--honey-pale); border-radius:12px; padding:12px 16px; margin:10px 0;\"><b>Articles wanted! Travel</b><br>Write an article telling us which form of transport is the nicest way to travel and why. Why do people in cities choose to go by train instead of driving?<br><i>The best article answering these questions will be published next month.</i></div><p style=\"font-size:0.9rem; margin-top:10px;\">Write your <b>article</b> in about <b>100 words</b>.</p>"
+    },
+    "question3": {
+      "type": "story",
+      "label": "Story",
+      "instructions": "Your English teacher has asked you to write a story. Your story must begin with this sentence:",
+      "openingSentence": "You will never believe what happened today."
+    }
+  }
+}
