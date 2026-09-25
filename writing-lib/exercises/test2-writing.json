@@ -1,0 +1,57 @@
+{
+  "id": "test2-writing",
+  "title": "Writingfullpractice(2)",
+  "level": "PET (B1)",
+  "part1": {
+    "type": "email",
+    "label": "Email",
+    "instructions": "Đọc email của Ben và các ghi chú. Viết email trả lời khoảng 100 từ, trả lời đầy đủ các gợi ý.",
+    "from": "Ben",
+    "subject": "Winter Holidays",
+    "bodyHtml": "<p>Hi Andrew,</p><p>My uncle and aunt are taking me to the mountains for a week. They said that I could bring a friend with me. Would you like to come with me? <span class=\"note-tag\">Thanks, yes...</span></p><p>My uncle and aunt are really fun to be with. We will go skiing twice while we are there. I hope you'll join us. <span class=\"note-tag\">No, because...</span></p><p>My uncle said that we will eat at a different restaurant every night. What food do you like? <span class=\"note-tag\">Tell Ben...</span></p><p>Is there anything else you'd like to know? We will leave on the 15th December. <span class=\"note-tag\">Ask Ben...</span></p><p>Best wishes,<br>Ben</p>",
+    "vocab": [
+      {"p": "Thank you for the invitation to...", "d": "Trả lời ý mở đầu (Thanks, yes...)"},
+      {"p": "I would love to...", "d": "Diễn tả sự đồng ý"},
+      {"p": "However, I can't ... because...", "d": "Trả lời ý từ chối có lý do (No, because...)"},
+      {"p": "I like.../ I am a vegetarian/ I don't eat...", "d": "Trả lời ý về sở thích ăn uống (Tell Ben...)"},
+      {"p": "What do I need to...?", "d": "Đặt câu hỏi (Ask Ben...)"},
+      {"p": "How much/many...do you think...?", "d": "Cách đặt câu hỏi khác"},
+      {"p": "Email me again soon. / Write back soon.", "d": "Lời chào cuối thư"}
+    ],
+    "model": "Hi Ben, Thank you for the invitation to go on holiday with you and your uncle and aunt. I would love to go with you. However, I can't go skiing because I have hurt my leg playing football. But it will still be fun watching you. I like lots of different kinds of food but I am a vegetarian. I don't think that will be a problem though. Actually I do eat fish and seafood. What do I need to take with me? I guess I need lots of warm clothes. I'll bring my new gloves and hat. How much money do you think I will need? Email me again soon please. Andrew"
+  },
+  "part2": {
+    "question2": {
+      "type": "article",
+      "label": "Article",
+      "instructions": "You see this notice in your school English-language magazine:",
+      "topic": "<div style=\"background:var(--honey-pale); border-radius:12px; padding:12px 16px; margin:10px 0;\"><b>Articles wanted! Travel</b><br>Write an article telling us which form of transport is the nicest way to travel and why. Why do people in cities choose to go by train instead of driving?<br><i>The best article answering these questions will be published next month.</i></div><p style=\"font-size:0.9rem; margin-top:10px;\">Write your <b>article</b> in about <b>100 words</b>.</p>",
+      "vocab": [
+        {"p": "My favourite way to travel is ... because...", "d": "Mở đầu bài, nêu ý kiến cá nhân"},
+        {"p": "However, it is not such a good idea to...", "d": "Chuyển ý, đưa quan điểm đối lập"},
+        {"p": "There are many reasons for this.", "d": "Giới thiệu lý do"},
+        {"p": "First of all, ... Secondly, ...", "d": "Liệt kê lý do theo thứ tự"},
+        {"p": "It is difficult/hard to...", "d": "Diễn tả khó khăn"},
+        {"p": "Also, you can...", "d": "Bổ sung ý"},
+        {"p": "For all these reasons, ... is the best way to...", "d": "Kết luận bài viết"}
+      ],
+      "model": "My favourite way to travel is by car because you can go wherever you want. You can also stop for a break when you need to. However, it is not such a good idea to use a car in a city. Many people in the city use the train instead of driving. There are many reasons for this. First of all, it is very difficult to find a place to park your car. Secondly, there is too much traffic in the city so your journey will take a long time. Also you can relax on a train. You can read or talk to other passengers. For all these reasons trains are the best way to travel in a city even if I like the car more."
+    },
+    "question3": {
+      "type": "story",
+      "label": "Story",
+      "instructions": "Your English teacher has asked you to write a story. Your story must begin with this sentence:",
+      "openingSentence": "You will never believe what happened today.",
+      "vocab": [
+        {"p": "We were having a nice time when...", "d": "Mở đầu bối cảnh (Start)"},
+        {"p": "Suddenly, ...", "d": "Sự việc bất ngờ xảy ra (Surprise)"},
+        {"p": "People were shouting/screaming.", "d": "Mô tả không khí hoảng loạn"},
+        {"p": "We were very frightened/terrified.", "d": "Diễn tả cảm xúc"},
+        {"p": "Luckily, ...", "d": "Chuyển sang giải quyết/may mắn (Solve)"},
+        {"p": "Nobody was hurt.", "d": "Kết quả an toàn"},
+        {"p": "It was just like being in a film, but much more...", "d": "Câu kết ấn tượng"}
+      ],
+      "model": "You will never believe what happened today. I was shopping in town with my mum. I needed some new clothes for school. We were having a nice morning and we decided to go for a coffee and a piece of cake in our favourite cafe. Suddenly a man ran past us. He had a scarf over his face and a gun in his hand. Then, a police car arrived and followed the man. People were shouting and we were very frightened. Luckily the police caught the man and nobody was hurt. It was just like being in a film on TV but much more frightening."
+    }
+  }
+}
