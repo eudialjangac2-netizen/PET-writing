@@ -538,6 +538,17 @@ function loadHtml2Canvas(){
     document.head.appendChild(s);
   });
 }
+let jsPDFLoaded = false;
+function loadJsPDF(){
+  return new Promise((resolve, reject) => {
+    if(jsPDFLoaded || (window.jspdf && window.jspdf.jsPDF)){ jsPDFLoaded = true; resolve(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.onload = () => { jsPDFLoaded = true; resolve(); };
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
 
 document.getElementById('exportConfirmBtn').addEventListener('click', async () => {
   const checked = Array.from(document.querySelectorAll('#exportOptsHolder input:checked')).map(i => i.value);
@@ -546,12 +557,8 @@ document.getElementById('exportConfirmBtn').addEventListener('click', async () =
   await buildAndExportPhieu(checked);
 });
 
-async function buildAndExportPhieu(keys){
-  await loadHtml2Canvas();
-
-  const container = document.createElement('div');
-  container.style.cssText = 'position:fixed; left:-9999px; top:0; width:700px; background:#fff; padding:36px 40px; font-family:Quicksand,sans-serif; color:#4A3420;';
-  let html = `<div style="text-align:center; border-bottom:4px solid #F0B23D; padding-bottom:16px; margin-bottom:20px;">
+function pageHeaderHtml(){
+  return `<div style="text-align:center; border-bottom:4px solid #F0B23D; padding-bottom:16px; margin-bottom:20px;">
     <div style="font-size:0.85rem; color:#8A6F52; letter-spacing:1px; text-transform:uppercase;">Ruby School</div>
     <div style="font-family:'Baloo 2',sans-serif; font-weight:800; color:#C9821D; font-size:1.5rem; margin-top:4px;">🐝 Phiếu làm bài Writing</div>
   </div>
@@ -561,41 +568,88 @@ async function buildAndExportPhieu(keys){
     <tr><td style="border:1px solid #FCE6BC; background:#FCE6BC; font-weight:700; color:#7A4B23; padding:8px 12px;">Đề bài</td><td style="border:1px solid #FCE6BC; padding:8px 12px;">${EX.title}</td>
         <td style="border:1px solid #FCE6BC; background:#FCE6BC; font-weight:700; color:#7A4B23; padding:8px 12px;">Chế độ</td><td style="border:1px solid #FCE6BC; padding:8px 12px;">${SCAFFOLD ? 'Luyện tập' : 'Thi thử'}</td></tr>
   </table>`;
+}
+function pageFooterHtml(){
+  return `<div style="text-align:center; font-size:0.72rem; color:#bbb; margin-top:26px;">${studentName} • ${new Date().toLocaleDateString('vi-VN')} — Phiếu này được tạo tự động từ hệ thống luyện Writing</div>`;
+}
 
-  keys.forEach(key => {
+async function buildAndExportPhieu(keys){
+  await loadHtml2Canvas();
+  await loadJsPDF();
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({unit:'pt', format:'a4'});
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const margin = 36;
+  const usableWidth = pageWidth - margin*2;
+  const usableHeight = pageHeight - margin*2;
+  let firstPageUsed = false;
+
+  for(let i=0; i<keys.length; i++){
+    const key = keys[i];
     const task = taskFromKey(key);
     const answer = (drafts[key] && drafts[key].trim()) ? drafts[key] : '(chưa làm)';
+
+    const container = document.createElement('div');
+    container.style.cssText = 'position:fixed; left:-9999px; top:0; width:700px; background:#fff; padding:36px 40px; font-family:Quicksand,sans-serif; color:#4A3420;';
+    let html = pageHeaderHtml();
     html += `<div style="font-family:'Baloo 2',sans-serif; font-weight:700; color:#7A4B23; font-size:1rem; margin:22px 0 8px; padding-bottom:4px; border-bottom:2px dashed #FCE6BC;">📋 ${taskLabelFromKey(key)}</div>`;
     html += `<div style="background:#FFFCF6; border:1px solid #FCE6BC; border-radius:10px; padding:14px 16px; font-size:0.9rem; line-height:1.6; margin-bottom:10px;">` + renderTaskPrompt(task) + `</div>`;
     html += `<div style="font-family:'Baloo 2',sans-serif; font-weight:700; color:#7A4B23; font-size:0.95rem; margin:10px 0 6px;">✍️ Bài làm</div>`;
     html += `<div style="border:1px solid #ddd; border-radius:10px; padding:16px; font-size:0.95rem; line-height:1.7; white-space:pre-line;">${answer}</div>`;
-  });
+    html += pageFooterHtml();
+    container.innerHTML = html;
+    document.body.appendChild(container);
 
-  html += `<div style="text-align:center; font-size:0.72rem; color:#bbb; margin-top:26px;">${studentName} • ${new Date().toLocaleDateString('vi-VN')} — Phiếu này được tạo tự động từ hệ thống luyện Writing</div>`;
-  container.innerHTML = html;
-  document.body.appendChild(container);
+    const canvas = await html2canvas(container, {scale:2, backgroundColor:'#ffffff'});
+    document.body.removeChild(container);
 
-  const canvas = await html2canvas(container, {scale:2, backgroundColor:'#ffffff'});
-  document.body.removeChild(container);
+    const pxPerPt = canvas.width / usableWidth;
+    const totalHeightPt = canvas.height / pxPerPt;
 
-  canvas.toBlob(async (blob) => {
-    const fileName = 'phieu-lam-bai-' + studentName.replace(/\s+/g,'-') + '-' + Date.now() + '.png';
-    const file = new File([blob], fileName, {type:'image/png'});
-    const isMobileDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
-    if(isMobileDevice && navigator.canShare && navigator.canShare({files:[file]})){
-      try{
-        await navigator.share({files:[file], title:'Phiếu làm bài Writing', text:'Phiếu làm bài của ' + studentName});
-        return;
-      }catch(e){ /* user cancelled or share failed, fall back to download below */ }
+    if(totalHeightPt <= usableHeight){
+      if(firstPageUsed) pdf.addPage();
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', margin, margin, usableWidth, totalHeightPt);
+      firstPageUsed = true;
+    } else {
+      const sliceHeightPx = Math.floor(usableHeight * pxPerPt);
+      let yOffset = 0;
+      let remaining = canvas.height;
+      while(remaining > 0){
+        const thisSliceHeightPx = Math.min(sliceHeightPx, remaining);
+        const pageCanvas = document.createElement('canvas');
+        pageCanvas.width = canvas.width;
+        pageCanvas.height = thisSliceHeightPx;
+        pageCanvas.getContext('2d').drawImage(canvas, 0, yOffset, canvas.width, thisSliceHeightPx, 0, 0, canvas.width, thisSliceHeightPx);
+        const sliceHeightPt = thisSliceHeightPx / pxPerPt;
+        if(firstPageUsed) pdf.addPage();
+        pdf.addImage(pageCanvas.toDataURL('image/png'), 'PNG', margin, margin, usableWidth, sliceHeightPt);
+        firstPageUsed = true;
+        yOffset += thisSliceHeightPx;
+        remaining -= thisSliceHeightPx;
+      }
     }
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = fileName;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    alert('Đã tải phiếu về máy. Cô/bạn có thể tự đính kèm ảnh này khi gửi Zalo.');
-  }, 'image/png');
+  }
+
+  const blob = pdf.output('blob');
+  const fileName = 'phieu-lam-bai-' + studentName.replace(/\s+/g,'-') + '-' + Date.now() + '.pdf';
+  const file = new File([blob], fileName, {type:'application/pdf'});
+  const isMobileDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+  if(isMobileDevice && navigator.canShare && navigator.canShare({files:[file]})){
+    try{
+      await navigator.share({files:[file], title:'Phiếu làm bài Writing', text:'Phiếu làm bài của ' + studentName});
+      return;
+    }catch(e){ /* user cancelled or share failed, fall back to download below */ }
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fileName;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  alert('Đã tải phiếu PDF về máy. Cô/bạn có thể tự đính kèm file này khi gửi Zalo.');
 }
+
 
 </script>
 </body>
