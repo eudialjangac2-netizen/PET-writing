@@ -581,7 +581,8 @@ async function buildAndExportPhieu(keys){
   canvas.toBlob(async (blob) => {
     const fileName = 'phieu-lam-bai-' + studentName.replace(/\s+/g,'-') + '-' + Date.now() + '.png';
     const file = new File([blob], fileName, {type:'image/png'});
-    if(navigator.canShare && navigator.canShare({files:[file]})){
+    const isMobileDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+    if(isMobileDevice && navigator.canShare && navigator.canShare({files:[file]})){
       try{
         await navigator.share({files:[file], title:'Phiếu làm bài Writing', text:'Phiếu làm bài của ' + studentName});
         return;
