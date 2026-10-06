@@ -1,0 +1,58 @@
+{
+  "id": "test3-writing",
+  "title": "Writingfullpractice(3)",
+  "level": "PET (B1)",
+  "part1": {
+    "type": "email",
+    "label": "Email",
+    "instructions": "Đọc email của Carole và các ghi chú. Viết email trả lời khoảng 100 từ, trả lời đầy đủ các gợi ý.",
+    "from": "Carole",
+    "subject": "Can't wait to see you!",
+    "bodyHtml": "<p>Hi,</p><p>It was so nice to speak to you on the phone earlier and I'm so excited to hear you're coming to see me next weekend. I can't wait! <span class=\"note-tag\">Me too!</span></p><p>How are you getting here? I can meet you either at the train or the coach station. And what time are you going to arrive? <span class=\"note-tag\">Say how you are travelling</span></p><p>My sister is away at university so you can have her bed. My mum wants to know if there's anything you can't eat as she wants to cook something when you arrive. <span class=\"note-tag\">Tell Carole</span></p><p>And one more question – do you want to stay in that evening or would you prefer to go out somewhere? <span class=\"note-tag\">Tell Carole what you prefer</span></p><p>Write back soon!</p>",
+    "vocab": [
+      {"p": "I also can't wait to...", "d": "Mẫu câu \"Me too\" (Đồng tình) — trả lời ý “Me too!”"},
+      {"p": "I'm excited/glad to..., too", "d": "Mẫu câu \"Me too\" — cách diễn đạt khác"},
+      {"p": "I'm also looking forward to + V-ing", "d": "Mẫu câu \"Me too\" — cách diễn đạt khác"},
+      {"p": "I'll be arriving by train/coach at around...", "d": "Trả lời ý “Say how you are travelling”"},
+      {"p": "I don't eat.../ I'm allergic to.../ I can eat anything except...", "d": "Trả lời ý “Tell Carole” (về đồ ăn)"},
+      {"p": "I think I'd prefer to... because...", "d": "Trả lời ý “Tell Carole what you prefer”, nêu lý do"},
+      {"p": "I'd love to go out/stay in since...", "d": "Cách diễn đạt khác cho sở thích cá nhân"},
+      {"p": "Write back soon, / Can't wait to see you!", "d": "Lời chào cuối thư (informal)"}
+    ],
+    "model": "Hi Carole,\n\nI also can't wait to see you next weekend! It feels like ages since we last met in person.\n\nI think I'll take the train, so I should arrive at the station at around 3 pm on Saturday.\n\nThank your mum so much for offering to cook! I don't eat seafood, but I'm happy to eat almost anything else, so please tell her not to worry too much.\n\nAs for the evening, I'd love to go out somewhere instead of staying in, since we haven't explored the town together before.\n\nWrite back soon!"
+  },
+  "part2": {
+    "question2": {
+      "type": "article",
+      "label": "Article",
+      "instructions": "You see this notice in an English-language magazine:",
+      "topic": "<div style=\"background:var(--honey-pale); border-radius:12px; padding:12px 16px; margin:10px 0;\"><b>HAVE YOU GOT A FAVOURITE PLACE?</b><br>Is your favourite place somewhere big, like a town or city, or somewhere small like a room in your house?<br>Why do you particularly like this place?<br><i>Write an article answering these questions and we will put it in our magazine.</i></div><p style=\"font-size:0.9rem; margin-top:10px;\">Write your <b>article</b> in about <b>100 words</b>.</p>",
+      "vocab": [
+        {"p": "My favourite place is...", "d": "Mở bài, nêu địa điểm yêu thích"},
+        {"p": "It is located in/at...", "d": "Miêu tả vị trí"},
+        {"p": "I like this place because...", "d": "Nêu lý do chính"},
+        {"p": "What I love most about it is...", "d": "Nhấn mạnh điểm đặc biệt"},
+        {"p": "Whenever I feel..., I like to go there because...", "d": "Liên hệ cảm xúc cá nhân"},
+        {"p": "It makes me feel...", "d": "Diễn tả cảm giác khi ở đó"},
+        {"p": "I would definitely recommend... to anyone who...", "d": "Câu kết bài gợi ý"}
+      ],
+      "model": "My favourite place is my grandmother's garden in the countryside. It isn't big or famous, but it is somewhere really special to me.\n\nThe garden is full of fruit trees and flowers, and there is an old wooden bench where I love to sit and read. It is located just behind my grandmother's house, about an hour from the city.\n\nI like this place because it is so peaceful compared to where I live. Whenever I feel stressed about school, I like to go there because the fresh air and the quiet always make me feel calm and happy again.\n\nI would definitely recommend finding a place like this to anyone who needs a break from busy city life."
+    },
+    "question3": {
+      "type": "story",
+      "label": "Story",
+      "instructions": "Your English teacher has asked you to write a story. Your story must begin with this sentence:",
+      "openingSentence": "I looked out of the window at the people passing by.",
+      "vocab": [
+        {"p": "I was looking out of the window, bored, when...", "d": "Mở đầu bối cảnh (Start)"},
+        {"p": "Suddenly, I noticed...", "d": "Sự việc bất ngờ xảy ra (Surprise)"},
+        {"p": "At first, I thought...", "d": "Phản ứng/suy đoán ban đầu"},
+        {"p": "I decided to... to find out what was happening", "d": "Hành động giải quyết (Solve)"},
+        {"p": "It turned out that...", "d": "Giải thích sự bất ngờ"},
+        {"p": "In the end, ...", "d": "Mở đầu đoạn kết"},
+        {"p": "From that day on, I always...", "d": "Bài học/cảm xúc rút ra cuối truyện"}
+      ],
+      "model": "I looked out of the window at the people passing by. It was a quiet Sunday afternoon, and I was bored, waiting for something interesting to happen.\n\nSuddenly, I noticed an old man outside who kept looking at his phone and walking in circles, as if he was lost. At first, I thought he was just confused about directions.\n\nI decided to go downstairs to ask if he needed any help. It turned out that he was looking for his dog, which had run away from his garden that morning.\n\nIn the end, we found the dog hiding under a car nearby, and the old man was so relieved that he thanked me again and again. From that day on, I always smile when I look out of that window, remembering how one small act of kindness made someone's day."
+    }
+  }
+}
