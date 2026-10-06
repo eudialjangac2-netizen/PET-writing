@@ -1,0 +1,27 @@
+{
+  "id": "test3-writing",
+  "title": "Writingfullpractice(3)",
+  "level": "PET (B1)",
+  "part1": {
+    "type": "email",
+    "label": "Email",
+    "instructions": "Đọc email của Carole và các ghi chú. Viết email trả lời khoảng 100 từ, trả lời đầy đủ các gợi ý.",
+    "from": "Carole",
+    "subject": "Can't wait to see you!",
+    "bodyHtml": "<p>Hi,</p><p>It was so nice to speak to you on the phone earlier and I'm so excited to hear you're coming to see me next weekend. I can't wait! <span class=\"note-tag\">Me too!</span></p><p>How are you getting here? I can meet you either at the train or the coach station. And what time are you going to arrive? <span class=\"note-tag\">Say how you are travelling</span></p><p>My sister is away at university so you can have her bed. My mum wants to know if there's anything you can't eat as she wants to cook something when you arrive. <span class=\"note-tag\">Tell Carole</span></p><p>And one more question – do you want to stay in that evening or would you prefer to go out somewhere? <span class=\"note-tag\">Tell Carole what you prefer</span></p><p>Write back soon!</p>"
+  },
+  "part2": {
+    "question2": {
+      "type": "article",
+      "label": "Article",
+      "instructions": "You see this notice in an English-language magazine:",
+      "topic": "<div style=\"background:var(--honey-pale); border-radius:12px; padding:12px 16px; margin:10px 0;\"><b>HAVE YOU GOT A FAVOURITE PLACE?</b><br>Is your favourite place somewhere big, like a town or city, or somewhere small like a room in your house?<br>Why do you particularly like this place?<br><i>Write an article answering these questions and we will put it in our magazine.</i></div><p style=\"font-size:0.9rem; margin-top:10px;\">Write your <b>article</b> in about <b>100 words</b>.</p>"
+    },
+    "question3": {
+      "type": "story",
+      "label": "Story",
+      "instructions": "Your English teacher has asked you to write a story. Your story must begin with this sentence:",
+      "openingSentence": "I looked out of the window at the people passing by."
+    }
+  }
+}
