@@ -1,6 +1,7 @@
 {
   "exercises": [
     { "id": "test1-writing", "title": "Writingfullpractice(1)", "level": "PET (B1)" },
-    { "id": "test2-writing", "title": "Writingfullpractice(2)", "level": "PET (B1)" }
+    { "id": "test2-writing", "title": "Writingfullpractice(2)", "level": "PET (B1)" },
+    { "id": "test3-writing", "title": "Writingfullpractice(3)", "level": "PET (B1)" }
   ]
 }
